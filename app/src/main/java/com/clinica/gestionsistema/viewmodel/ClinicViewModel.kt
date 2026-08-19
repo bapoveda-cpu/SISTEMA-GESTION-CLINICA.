@@ -29,6 +29,10 @@ class ClinicViewModel(application: Application) : AndroidViewModel(application) 
     fun addAppointment(appointment: Appointment) = viewModelScope.launch {
         dao.insertAppointment(appointment)
     }
+
+    fun removeAppointment(appointment: Appointment) = viewModelScope.launch {
+        dao.deleteAppointment(appointment)
+    }
     
     fun addPrescription(prescription: Prescription) = viewModelScope.launch {
         dao.insertPrescription(prescription)

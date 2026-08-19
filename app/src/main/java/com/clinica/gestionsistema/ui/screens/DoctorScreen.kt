@@ -60,11 +60,26 @@ fun DoctorScreen(navController: NavController, viewModel: ClinicViewModel = view
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddDoctorDialog(onDismiss: () -> Unit, onConfirm: (String, String, String) -> Unit) {
     var name by remember { mutableStateOf("") }
     var specialty by remember { mutableStateOf("") }
     var phone by remember { mutableStateOf("") }
+    var expanded by remember { mutableStateOf(false) }
+    
+    val specialties = listOf(
+        "Medicina General",
+        "Pediatría",
+        "Cardiología",
+        "Ginecología",
+        "Traumatología",
+        "Dermatología",
+        "Oftalmología",
+        "Psiquiatría",
+        "Odontología",
+        "Cirugía General"
+    )
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -78,12 +93,37 @@ fun AddDoctorDialog(onDismiss: () -> Unit, onConfirm: (String, String, String) -
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                TextField(
-                    value = specialty, 
-                    onValueChange = { specialty = it }, 
-                    label = { Text("Especialidad (Ej: Cardiología)") },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                
+                // Dropdown for Specialties
+                ExposedDropdownMenuBox(
+                    expanded = expanded,
+                    onExpandedChange = { expanded = !expanded }
+                ) {
+                    TextField(
+                        value = specialty,
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("Especialidad") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                        modifier = Modifier.menuAnchor().fillMaxWidth(),
+                        colors = ExposedDropdownMenuDefaults.textFieldColors()
+                    )
+                    ExposedDropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
+                        specialties.forEach { item ->
+                            DropdownMenuItem(
+                                text = { Text(text = item) },
+                                onClick = {
+                                    specialty = item
+                                    expanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+
                 Spacer(modifier = Modifier.height(8.dp))
                 TextField(
                     value = phone, 

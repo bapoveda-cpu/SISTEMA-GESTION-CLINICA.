@@ -31,6 +31,8 @@ interface ClinicDao {
 
     @Insert
     suspend fun insertAppointment(appointment: Appointment)
+    @Delete
+    suspend fun deleteAppointment(appointment: Appointment)
     @Query("SELECT * FROM appointments")
     fun getAllAppointments(): Flow<List<Appointment>>
 
