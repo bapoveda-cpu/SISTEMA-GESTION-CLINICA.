@@ -21,8 +21,15 @@ fun DoctorScreen(navController: NavController, viewModel: ClinicViewModel = view
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { 
-            TopAppBar(title = { Text("Administración de Doctores") }) 
+        topBar = {
+            TopAppBar(
+                title = { Text("Administración de Doctores") },
+                navigationIcon = {
+                    TextButton(onClick = { navController.popBackStack() }) {
+                        Text("Atrás")
+                    }
+                }
+            )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = { showDialog = true }) {

@@ -32,6 +32,28 @@ fun DashboardScreen(navController: NavController) {
             item { DashboardCard("Recetas", Icons.Default.List) { navController.navigate("prescriptions") } }
             item { DashboardCard("Reportes", Icons.Default.Info) { navController.navigate("reports") } }
             item { DashboardCard("Marcaciones", Icons.Default.CheckCircle) { navController.navigate("attendance") } }
+
+            // Información de la App - Ahora clickeable para ver detalles
+            item(span = { GridItemSpan(2) }) {
+                Card(
+                    onClick = { navController.navigate("info") },
+                    modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.Info, contentDescription = null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Más Información", style = MaterialTheme.typography.titleMedium)
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            "Presiona aquí para conocer detalladamente el funcionamiento de cada módulo de la aplicación.",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -21,7 +22,16 @@ fun PatientScreen(navController: NavController, viewModel: ClinicViewModel = vie
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Gestión de Pacientes") }) },
+        topBar = {
+            TopAppBar(
+                title = { Text("Gestión de Pacientes") },
+                navigationIcon = {
+                    TextButton(onClick = { navController.popBackStack() }) {
+                        Text("Atrás")
+                    }
+                }
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = { showDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Añadir Paciente")

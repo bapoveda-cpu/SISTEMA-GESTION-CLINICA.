@@ -23,7 +23,16 @@ fun ReportScreen(navController: NavController, viewModel: ClinicViewModel = view
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Reportes Médicos") }) },
+        topBar = {
+            TopAppBar(
+                title = { Text("Reportes Médicos") },
+                navigationIcon = {
+                    TextButton(onClick = { navController.popBackStack() }) {
+                        Text("Atrás")
+                    }
+                }
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = { showDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Nuevo Reporte")

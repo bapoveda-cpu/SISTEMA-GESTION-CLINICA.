@@ -24,7 +24,16 @@ fun AttendanceScreen(navController: NavController, viewModel: ClinicViewModel = 
     val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Sistema de Marcaciones") }) }
+        topBar = {
+            TopAppBar(
+                title = { Text("Sistema de Marcaciones") },
+                navigationIcon = {
+                    TextButton(onClick = { navController.popBackStack() }) {
+                        Text("Atrás")
+                    }
+                }
+            )
+        }
     ) { padding ->
         Column(modifier = Modifier.padding(padding).fillMaxSize().padding(16.dp)) {
             Card(modifier = Modifier.fillMaxWidth()) {

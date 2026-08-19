@@ -41,5 +41,6 @@ fun ClinicApp() {
         composable("prescriptions") { PrescriptionScreen(navController) }
         composable("reports") { ReportScreen(navController) }
         composable("attendance") { AttendanceScreen(navController) }
+        composable("info") { InfoScreen(navController) }
     }
 }

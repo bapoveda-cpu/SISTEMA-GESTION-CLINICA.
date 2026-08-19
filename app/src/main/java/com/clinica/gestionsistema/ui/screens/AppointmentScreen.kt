@@ -21,7 +21,16 @@ fun AppointmentScreen(navController: NavController, viewModel: ClinicViewModel =
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Gestión de Citas") }) },
+        topBar = {
+            TopAppBar(
+                title = { Text("Gestión de Citas") },
+                navigationIcon = {
+                    TextButton(onClick = { navController.popBackStack() }) {
+                        Text("Atrás")
+                    }
+                }
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = { showDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Nueva Cita")

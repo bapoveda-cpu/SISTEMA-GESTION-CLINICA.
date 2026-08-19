@@ -21,7 +21,16 @@ fun PrescriptionScreen(navController: NavController, viewModel: ClinicViewModel 
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Recetas Médicas") }) },
+        topBar = {
+            TopAppBar(
+                title = { Text("Recetas Médicas") },
+                navigationIcon = {
+                    TextButton(onClick = { navController.popBackStack() }) {
+                        Text("Atrás")
+                    }
+                }
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = { showDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Generar Receta")
