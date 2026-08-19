@@ -1,0 +1,2 @@
+rootProject.name = "SISTEMA GESTION CLINICA"
+include ':app'
